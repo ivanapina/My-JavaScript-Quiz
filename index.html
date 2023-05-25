@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Assets/css/style.css"/>
+    <title>HOME PAGE || JS QUIZ</title>
+</head>
+<body>
+    <h1>Welcome to the JS Quiz!</h1>
+
+    <section class="highscores">
+        <a href="highscores.html">View High Scores</a>
+    </section>
+
+    <section class="timer">
+        Time Left = <span id="timer">75</span> Seconds
+    </section>
+
+    <main id="quizContent">
+        <!--Phase 1 = Landing, instructions, and start button--> 
+        <h2>So you think you can code?</h2>
+        <p>Answer the JavaScript themed questions as fast as you can, you'll have 75 seconds to asnwer, your total score will be determined by the time you have left. Note that every wrong question will be penalized with -10 points.</p>
+        <img src="https://image.over-blog.com/iaBkumxIyL-ad2t8iMWhSbRiSYs=/filters:no_upscale()/image%2F0980383%2F20210116%2Fob_223a1c_kitty10.gif" alt="Hello Kitty sitted in front of a computer" style="max-width: 150px; margin-bottom: 15px;">
+        <button id="start">Start Game</button>
+        <ul id="optionsUl"></ul>
+        <!--Phase 2 = Questions with possible responses as buttons--> 
+
+        <!--Phase 3 = End game screen scores with submit initials button--> 
+
+    </main>
+    <script src="./Assets/JavaScript/quiz-questions.js"></script>
+    <script src="./Assets/JavaScript/game-logic.js"></script>
+</body>
+</html>
