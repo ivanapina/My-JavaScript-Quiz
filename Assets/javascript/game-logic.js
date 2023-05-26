@@ -1,58 +1,8 @@
 var timer = document.querySelector("#timer");
 var startBtn = document.querySelector("#start");
-
-// 
 var score = 0;
 var container = document.querySelector("#container");
 var quizContent = document.querySelector("#quizContent");
-var questionTitle = document.querySelector("#qTitle")
-//
-
-var countdown = function(num){
-    
-
-    for (var i=num; i > 0; i--) {
-
-       console.log(i)
-
-    }
-}
-
-var countdown = 75;
-
-// 
-var questionIndex = 0;
-
-var createList = document.createElement("ul");
-createList.setAttribute("id", "optionsUl")
-
-var timeInterval = 0;
-var countdown = 75;
-var penalty = 10;
-
-startBtn.addEventListener("click", function() {
-    if (timeInterval === 0) {
-        timeInterval = setInterval(function() {
-            countdown--;
-            timer.textContent = countdown;
-            if (countdown <= 0) {
-                clearInterval(timeInterval);
-                theEnd();
-            }
-        }, 1000);
-    }
-    newQuestion(questionIndex)
-});
-
-
-////
-
-var score = 0;
-var container = document.querySelector("#container");
-var quizContent = document.querySelector("#quizContent");
-var questionTitle = document.querySelector("#qTitle")
-var timer = document.querySelector("#timer");
-var startBtn = document.querySelector("#start");
 
 var questions = [
     {
@@ -82,6 +32,41 @@ var questions = [
 ];
 var questionIndex = 0;
 
+var countdown = function(num){
+    
+
+    for (var i=num; i > 0; i--) {
+
+       console.log(i)
+
+    }
+}
+
+var countdown = 75;
+
+var questionIndex = 0;
+
+var createList = document.createElement("ul");
+createList.setAttribute("id", "optionsUl")
+
+var timeInterval = 0;
+var countdown = 75;
+var penalty = 10;
+
+startBtn.addEventListener("click", function() {
+    if (timeInterval === 0) {
+        timeInterval = setInterval(function() {
+            countdown--;
+            timer.textContent = countdown;
+            if (countdown <= 0) {
+                clearInterval(timeInterval);
+                theEnd();
+            }
+        }, 1000);
+    }
+    newQuestion(questionIndex)
+});
+
 var createUl = document.createElement("ul");
 createUl.setAttribute("id", "optionsUl")
 
@@ -103,7 +88,7 @@ startBtn.addEventListener("click", function() {
     newQuestion(questionIndex)
 });
 
-// generates a new question
+// This fuction creates a new question
 function newQuestion(questionIndex) {
     quizContent.innerHTML = "";
     createUl.innerHTML = "";
@@ -128,7 +113,7 @@ var i = 0;
 var newDiv = document.createElement("div");
 var feedback = document.createElement("h3");
 newDiv.setAttribute("id", "newDiv");
-// checks to see if selected answer is correct & inserts feedback (correct/incorrect)
+// Function to check if answer is correct 
 function checkAns(event) {
         var choice = event.target;
         quizContent.appendChild(newDiv);
@@ -137,7 +122,7 @@ function checkAns(event) {
         next.setAttribute("id", "nextButton");
         next.textContent = "Next Question";
 
-// condition that selected answer is correct
+// Condition for correct answer
     if (choice.textContent == questions[questionIndex].answer) {
         score++;
         feedback.textContent = "Correct!";
@@ -145,14 +130,15 @@ function checkAns(event) {
         
         newDiv.appendChild(next);
         next.addEventListener("click", (movingOn));
-//condition that the selected answer is incorrect
+// Condition for wrong answer
     } else {
         countdown = countdown - penalty;
         feedback.textContent = "Wrong!";
         newDiv.appendChild(feedback);
     }
 }
-// Decides whether to initiate final pages or to cycle through next question
+
+// Function next question
 function movingOn(event) {
     newDiv.innerHTML = "";
     questionIndex++;
@@ -168,14 +154,14 @@ function movingOn(event) {
 function theEnd() {
     quizContent.innerHTML = "";
     timer.innerHTML = "";
-// Sets up high score page
+// High scores page
     var newH1 = document.createElement("h1");
     newH1.setAttribute("id", "newH1");
     newH1.textContent = "Finished!"
     quizContent.appendChild(newH1);
 
 
-// Calculation and display of final score
+// Condition for final score
     if (countdown >= 0) {
         score = countdown;
         clearInterval(timeInterval);
@@ -192,11 +178,11 @@ function theEnd() {
         quizContent.appendChild(newP);
     }
 
-// Initials submission box and button
-    var initialsPrompt = document.createElement("label");
-    initialsPrompt.setAttribute("for", "inputBox");
-    initialsPrompt.textContent = "Enter your initials: ";
-    quizContent.appendChild(initialsPrompt);
+// Initials submission
+    var initialsSub = document.createElement("label");
+    initialsSub.setAttribute("for", "inputBox");
+    initialsSub.textContent = "Enter your initials: ";
+    quizContent.appendChild(initialsSub);
 
     var inputBox = document.createElement("input");
     inputBox.setAttribute("type", "text");
@@ -210,7 +196,7 @@ function theEnd() {
     submit.textContent = "Submit";
     quizContent.appendChild(submit);
 
-// Event listener for submission button and storage initials and score
+// Event listener for initial submission
     submit.addEventListener("click", function() {
         var initials = inputBox.value;
 
@@ -237,3 +223,4 @@ function theEnd() {
         }
     });
 };
+
